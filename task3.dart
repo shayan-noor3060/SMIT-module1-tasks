@@ -1,22 +1,21 @@
 import 'dart:io';
 
 void main() {
-  final numbers = <int>[];
+  List<int> numbers = [];
 
   while (true) {
-    stdout.write('Enter a number (0 to stop): ');
-    final input = stdin.readLineSync();
-    final number = int.tryParse(input!);
+    print("Enter a number (enter 0 to cancel):");
+    int userInput = int.parse(stdin.readLineSync()!);
 
-    if (number == null) {
-      print('Invalid input. Please enter a valid number.');
-    } else if (number == 0) {
+    if (userInput == 0) {
       break;
     } else {
-      numbers.add(number);
+      numbers.add(userInput);
     }
   }
 
-  final evenNumbers = numbers.where((n) => n.isEven).toList();
-  print('Even numbers entered: $evenNumbers');
+  List<int> evenNumbers = numbers.where((number) => number % 2 == 0).toList();
+
+  print("Even numbers entered:");
+  print(evenNumbers);
 }
